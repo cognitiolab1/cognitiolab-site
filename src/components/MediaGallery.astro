@@ -1,0 +1,99 @@
+---
+// Shopify-style media gallery: main viewer (video first if provided, then screenshots) + thumbnail strip.
+// Props: video (optional) = { id, title }; images = [{ src, alt }]
+const { video = null, images = [] } = Astro.props;
+const ytThumb = (id) => `https://i.ytimg.com/vi/${id}/hqdefault.jpg`;
+---
+<div class="media-gallery" data-gallery>
+  <div class="media-stage">
+    {video && (
+      <div class="media-item media-video is-active" data-item="0">
+        <button
+          class="video-facade"
+          data-video-id={video.id}
+          style={`background-image:url(${ytThumb(video.id)})`}
+          aria-label={`Play video: ${video.title}`}
+        >
+          <span class="play-btn" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+          </span>
+        </button>
+      </div>
+    )}
+    {images.map((img, i) => (
+      <div class={`media-item${!video && i === 0 ? ' is-active' : ''}`} data-item={video ? i + 1 : i}>
+        <img src={img.src} alt={img.alt} loading="lazy" width="1600" height="900" />
+      </div>
+    ))}
+    <button class="media-arrow prev" data-prev aria-label="Previous">&#8249;</button>
+    <button class="media-arrow next" data-next aria-label="Next">&#8250;</button>
+  </div>
+
+  <div class="media-thumbs" data-thumbs>
+    {video && (
+      <button class="thumb thumb-video is-active" data-thumb="0" aria-label="Video">
+        <img src={ytThumb(video.id)} alt="" loading="lazy" />
+        <span class="thumb-play" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+        </span>
+      </button>
+    )}
+    {images.map((img, i) => (
+      <button class={`thumb${!video && i === 0 ? ' is-active' : ''}`} data-thumb={video ? i + 1 : i} aria-label={`Screenshot ${i + 1}`}>
+        <img src={img.src} alt="" loading="lazy" />
+      </button>
+    ))}
+  </div>
+</div>
+
+<script>
+  document.querySelectorAll('[data-gallery]').forEach((g) => {
+    const items = Array.from(g.querySelectorAll('[data-item]'));
+    const thumbs = Array.from(g.querySelectorAll('[data-thumb]'));
+    const thumbsWrap = g.querySelector('[data-thumbs]');
+    const prevBtn = g.querySelector('[data-prev]');
+    const nextBtn = g.querySelector('[data-next]');
+    const videoItem = g.querySelector('.media-video');
+    const facadeHTML = videoItem ? videoItem.innerHTML : null;
+    let idx = 0;
+
+    function bindFacade() {
+      const facade = g.querySelector('[data-video-id]');
+      if (!facade) return;
+      facade.addEventListener('click', () => {
+        const id = facade.getAttribute('data-video-id');
+        const iframe = document.createElement('iframe');
+        iframe.src = 'https://www.youtube-nocookie.com/embed/' + id + '?autoplay=1&rel=0';
+        iframe.title = facade.getAttribute('aria-label') || 'Video';
+        iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+        iframe.setAttribute('allowfullscreen', '');
+        videoItem.innerHTML = '';
+        videoItem.appendChild(iframe);
+      });
+    }
+
+    function resetVideo() {
+      if (videoItem && facadeHTML && videoItem.querySelector('iframe')) {
+        videoItem.innerHTML = facadeHTML;
+        bindFacade();
+      }
+    }
+
+    function show(i) {
+      const prevIdx = idx;
+      idx = (i + items.length) % items.length;
+      if (items[prevIdx] === videoItem && idx !== prevIdx) resetVideo();
+      items.forEach((it, j) => it.classList.toggle('is-active', j === idx));
+      thumbs.forEach((t, j) => t.classList.toggle('is-active', j === idx));
+      const t = thumbs[idx];
+      if (t && thumbsWrap) {
+        thumbsWrap.scrollTo({ left: t.offsetLeft - thumbsWrap.clientWidth / 2 + t.clientWidth / 2, behavior: 'smooth' });
+      }
+    }
+
+    prevBtn && prevBtn.addEventListener('click', () => show(idx - 1));
+    nextBtn && nextBtn.addEventListener('click', () => show(idx + 1));
+    thumbs.forEach((t, j) => t.addEventListener('click', () => show(j)));
+    bindFacade();
+  });
+</script>

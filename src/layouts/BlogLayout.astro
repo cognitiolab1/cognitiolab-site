@@ -1,0 +1,23 @@
+---
+import Base from './Base.astro';
+const { frontmatter } = Astro.props;
+
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": frontmatter.title,
+  "description": frontmatter.description,
+  "datePublished": frontmatter.pubDate,
+  "author": { "@type": "Organization", "name": "CognitioLab" },
+  "publisher": { "@type": "Organization", "name": "CognitioLab" },
+};
+---
+<Base title={`${frontmatter.title} — CognitioLab`} description={frontmatter.description}>
+  <script type="application/ld+json" slot="head" set:html={JSON.stringify(articleSchema)} />
+  <article class="article">
+    <a href="/blog" class="back-link">← Back to blog</a>
+    <h1>{frontmatter.title}</h1>
+    <div class="post-meta">{frontmatter.category}</div>
+    <slot />
+  </article>
+</Base>

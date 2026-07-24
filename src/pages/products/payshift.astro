@@ -1,0 +1,198 @@
+---
+import Base from '../../layouts/Base.astro';
+import MediaGallery from '../../components/MediaGallery.astro';
+
+const title = 'PayShift — Hide, reorder & rename payment methods on Shopify | CognitioLab';
+const description = 'PayShift lets Shopify merchants hide, reorder, and rename payment and shipping methods at checkout with simple rules. Free to install.';
+
+const appSchema = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "PayShift",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Shopify",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "aggregateRating": { "@type": "AggregateRating", "ratingValue": "5", "reviewCount": "1" },
+  "description": "Hide, reorder, and rename payment and shipping methods at Shopify checkout.",
+};
+
+const video = { id: 'dQga27FV3j8', title: 'PayShift — customize your Shopify checkout' };
+const images = [
+  { src: '/assets/payshift/payshift-1.png', alt: 'PayShift — customize your Shopify checkout' },
+  { src: '/assets/payshift/payshift-2.png', alt: 'Hide, rename and reorder payment methods from a clean rules dashboard' },
+  { src: '/assets/payshift/payshift-3.png', alt: 'PayShift feature overview' },
+  { src: '/assets/payshift/payshift-4.png', alt: 'PayShift rule configuration' },
+  { src: '/assets/payshift/payshift-5.png', alt: 'PayShift conditions and targeting' },
+  { src: '/assets/payshift/payshift-6.png', alt: 'PayShift checkout result' },
+];
+
+const faqs = [
+  { q: 'Do I need to edit code or my theme?', a: 'No. Everything is done from the PayShift dashboard — create a rule and it appears at checkout instantly, with no theme edits and no developer needed.' },
+  { q: 'Can I rename a payment gateway label?', a: 'Yes. Rename any payment method to a clearer name your customers recognise — for example, showing "JazzCash" instead of a generic gateway label like "Online Payment Options."' },
+  { q: 'Can I hide a payment method based on the cart?', a: 'Yes. Hide methods based on conditions such as cart total, country, products, or the shipping method selected — for example, hiding Cash on Delivery for high-value orders.' },
+  { q: 'Does PayShift work for shipping methods too?', a: 'Yes. The same hide, rename, and reorder rules apply to shipping methods, so you can tidy up your delivery options the same way you tidy up payments.' },
+  { q: 'Is PayShift free?', a: 'Yes — PayShift is free to install and use on your store, with no credit card required.' },
+  { q: 'What if I need help setting up a rule?', a: "Message us and we'll build the rule for you — free. You reach the people who made the app, usually within minutes." },
+];
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqs.map((f) => ({ "@type": "Question", "name": f.q, "acceptedAnswer": { "@type": "Answer", "text": f.a } })),
+};
+---
+<Base title={title} description={description} navCta={{ label: 'Install free', href: 'https://apps.shopify.com/payshift' }}>
+  <script type="application/ld+json" slot="head" set:html={JSON.stringify(appSchema)} />
+  <script type="application/ld+json" slot="head" set:html={JSON.stringify(faqSchema)} />
+
+  <header class="prod-hero">
+    <div class="wrap prod-hero-grid">
+      <div>
+        <a href="/#apps" class="back-link">← All apps</a>
+        <div class="app-ico"><img src="/assets/payshift/payshift-avatar.png" alt="PayShift" width="62" height="62" /></div>
+        <div class="prod-badge"><span class="tag tag-live">Live on the App Store</span></div>
+        <h1>Control your checkout payment &amp; shipping methods.</h1>
+        <p class="lead">PayShift lets you hide, reorder, and rename payment and shipping methods at checkout — with rules based on cart value, location, products, and more. No code required.</p>
+        <div class="hero-cta">
+          <a href="https://apps.shopify.com/payshift" class="btn btn-primary">Install free</a>
+          <a href="mailto:cognitiolab1@gmail.com" class="text-link">Need help setting up? →</a>
+        </div>
+      </div>
+      <MediaGallery video={video} images={images} />
+    </div>
+  </header>
+
+  <section class="feat-list">
+    <div class="wrap">
+      <div class="head-row"><div><h2>What PayShift does</h2><p>Three simple rule types, endless combinations.</p></div></div>
+      <div class="feat-grid">
+        <div class="feat">
+          <div class="feat-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="m5 12 7 7 7-7"/></svg></div>
+          <div><h3>Rename methods</h3><p>Turn a confusing gateway label into a name customers trust — like showing "JazzCash" instead of "Online Payment Options." The fastest win at checkout.</p></div>
+        </div>
+        <div class="feat">
+          <div class="feat-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M9.9 4.24A9 9 0 1 0 20 12"/><path d="M1 1l22 22"/></svg></div>
+          <div><h3>Hide methods by rules</h3><p>Hide Cash on Delivery over a cart value, restrict a method by country, or hide a payment option when a certain shipping method is chosen. You set the condition; PayShift enforces it.</p></div>
+        </div>
+        <div class="feat">
+          <div class="feat-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4v16"/><path d="m3 8 4-4 4 4"/><path d="M17 20V4"/><path d="m21 16-4 4-4-4"/></svg></div>
+          <div><h3>Reorder methods</h3><p>Put your preferred payment or shipping option first, so the choice you want customers to make is the one they see at the top.</p></div>
+        </div>
+        <div class="feat">
+          <div class="feat-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v4H4z"/><path d="M4 12h10v4H4z"/><path d="M4 20h6"/></svg></div>
+          <div><h3>Works for shipping too</h3><p>The same hide, rename, and reorder rules apply to shipping methods — clean up your delivery options exactly the way you clean up payments.</p></div>
+        </div>
+        <div class="feat">
+          <div class="feat-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4"/><path d="M12 18v4"/><path d="m4.9 4.9 2.8 2.8"/><path d="m16.3 16.3 2.8 2.8"/><circle cx="12" cy="12" r="4"/></svg></div>
+          <div><h3>No code, live instantly</h3><p>Build a rule in the dashboard and it's active at checkout right away. No theme edits, no developer, no waiting.</p></div>
+        </div>
+        <div class="feat">
+          <div class="feat-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+          <div><h3>We'll set it up for you</h3><p>Not sure how to build a rule? Message us and we'll configure it for you — free. Real help from the people who made the app.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="steps">
+    <div class="wrap">
+      <div class="head-row"><div><h2>Live in three steps</h2><p>No code, no theme edits, no waiting.</p></div></div>
+      <div class="steps-grid">
+        <div class="step">
+          <div class="step-num">1</div>
+          <h3>Install PayShift</h3>
+          <p>Add PayShift to your store for free and open it right from your Shopify admin. Nothing to configure in your theme.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <h3>Create a rule</h3>
+          <p>Choose whether to hide, rename, or reorder a method, then pick the payment or shipping option you want to change.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <h3>Set conditions &amp; save</h3>
+          <p>Add any conditions — cart value, country, products — and save. Your rule is live at checkout instantly.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="usecases">
+    <div class="wrap">
+      <div class="head-row"><div><h2>Who PayShift is for</h2><p>Real problems merchants solve with a single rule.</p></div></div>
+      <div class="uc-grid">
+        <div class="uc">
+          <h3><span class="uc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="m5 12 7 7 7-7"/></svg></span>Stores using local gateways</h3>
+          <p>Rename a confusing gateway label to a name customers instantly trust — like showing "JazzCash" instead of "Online Payment Options" — so shoppers don't hesitate at checkout.</p>
+        </div>
+        <div class="uc">
+          <h3><span class="uc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M9.9 4.24A9 9 0 1 0 20 12"/><path d="M1 1l22 22"/></svg></span>COD-heavy stores</h3>
+          <p>Hide Cash on Delivery on high-value orders to cut return-to-origin losses, or restrict it to the regions where it actually works for you.</p>
+        </div>
+        <div class="uc">
+          <h3><span class="uc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M2 12h20"/><path d="M12 3a15 15 0 0 1 0 18a15 15 0 0 1 0-18"/></svg></span>International stores</h3>
+          <p>Show or hide payment and shipping methods by country, so every customer sees only the options that make sense for where they are.</p>
+        </div>
+        <div class="uc">
+          <h3><span class="uc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4v16"/><path d="m3 8 4-4 4 4"/><path d="M17 20V4"/><path d="m21 16-4 4-4-4"/></svg></span>Any store wanting a cleaner checkout</h3>
+          <p>Reorder methods to put your preferred option first, and remove clutter so shoppers reach the checkout button faster.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="testimonial">
+    <div class="wrap">
+      <div class="stars">★★★★★</div>
+      <blockquote>"Life saver."</blockquote>
+      <cite>SH Collection · Pakistan · Shopify App Store</cite>
+    </div>
+  </section>
+
+  <section class="guides">
+    <div class="wrap">
+      <div class="head-row"><div><h2>Guides &amp; tutorials</h2><p>Step-by-step walkthroughs for common setups.</p></div></div>
+      <div class="guides-grid">
+        <div class="guide">
+          <div class="video">
+            <iframe src="https://www.youtube-nocookie.com/embed/FlRaFfLLta0" title="How to hide a payment method in Shopify" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+          </div>
+          <h3>How to hide a payment method in Shopify</h3>
+        </div>
+        <div class="guide">
+          <div class="video">
+            <iframe src="https://www.youtube-nocookie.com/embed/ZN696xLJML4" title="How to rename a shipping method in Shopify" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+          </div>
+          <h3>How to rename a shipping method in Shopify</h3>
+        </div>
+        <div class="guide">
+          <div class="video">
+            <iframe src="https://www.youtube-nocookie.com/embed/nQS-WI-ORzA" title="How to build advanced checkout rules with AND/OR logic in Shopify" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+          </div>
+          <h3>Advanced checkout rules with AND/OR logic</h3>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="faq">
+    <div class="wrap">
+      <div class="head-row"><div><h2>Frequently asked questions</h2><p>Everything you need to know before you install.</p></div></div>
+      <div class="faq-list">
+        {faqs.map((f) => (
+          <details class="faq-item">
+            <summary>{f.q}</summary>
+            <p>{f.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="cta">
+    <div class="wrap">
+      <h2>Clean up your checkout in minutes.</h2>
+      <p>PayShift is free to install — try it on your store today.</p>
+      <a href="https://apps.shopify.com/payshift" class="btn btn-primary">Get PayShift free</a>
+    </div>
+  </section>
+</Base>

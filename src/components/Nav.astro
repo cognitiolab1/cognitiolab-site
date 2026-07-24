@@ -1,0 +1,17 @@
+---
+const { cta = { label: 'Browse apps', href: '/#apps' } } = Astro.props;
+---
+<nav>
+  <div class="wrap nav-inner">
+    <a href="/" class="logo">
+      <img src="/assets/logo-avatar.png" alt="CognitioLab" width="30" height="30" />
+      CognitioLab
+    </a>
+    <div class="nav-links">
+      <a href="/#apps">Apps</a>
+      <a href="/blog">Blog</a>
+      <a href="/#contact">Contact</a>
+      <a href={cta.href} class="btn btn-primary">{cta.label}</a>
+    </div>
+  </div>
+</nav>

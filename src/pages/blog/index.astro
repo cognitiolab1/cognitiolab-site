@@ -1,0 +1,34 @@
+---
+import Base from '../../layouts/Base.astro';
+
+// Astro auto-collects Markdown posts in this folder. Add a new .md file → it appears here.
+const modules = import.meta.glob('./*.md', { eager: true });
+const posts = Object.values(modules)
+  .map((m) => ({ ...m.frontmatter, url: m.url }))
+  .sort((a, b) => new Date(b.pubDate).valueOf() - new Date(a.pubDate).valueOf());
+
+const fmtDate = (d) => new Date(d).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+---
+<Base title="Blog — CognitioLab" description="Practical guides for Shopify merchants — checkout, redirects, payments, and getting more from your store.">
+  <header class="hero" style="padding:60px 0 8px">
+    <div class="wrap">
+      <div class="hero-eyebrow">Guides &amp; notes</div>
+      <h1>The CognitioLab blog</h1>
+      <p class="hero-lead" style="margin-top:16px">Practical guides for Shopify merchants — checkout, redirects, payments, and getting more from your store.</p>
+    </div>
+  </header>
+
+  <section class="block" style="padding-top:44px">
+    <div class="wrap">
+      <div class="post-list">
+        {posts.map((post) => (
+          <a href={post.url} class="post-item">
+            <div class="post-meta">{post.category} · {fmtDate(post.pubDate)}</div>
+            <h3>{post.title}</h3>
+            <p>{post.description}</p>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</Base>

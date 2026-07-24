@@ -1,0 +1,164 @@
+---
+import Base from '../../layouts/Base.astro';
+import MediaGallery from '../../components/MediaGallery.astro';
+
+const title = 'Routify — SEO redirect manager for Shopify (301 & 404) | CognitioLab';
+const description = 'Routify manages 301 and 404 redirects on Shopify — live SEO health score, bulk CSV import, broken link finder, and 404 log fixes. Free to install.';
+
+const appSchema = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Routify",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Shopify",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "description": "Manage 301 and 404 redirects on Shopify to protect SEO value.",
+};
+
+const images = [
+  { src: '/assets/routify/routify-1.png', alt: 'Routify — SEO redirect manager for Shopify stores' },
+  { src: '/assets/routify/routify-2.png', alt: 'Routify SEO redirect dashboard' },
+  { src: '/assets/routify/routify-3.png', alt: 'Routify bulk CSV import' },
+  { src: '/assets/routify/routify-4.png', alt: 'Routify broken link finder' },
+  { src: '/assets/routify/routify-5.png', alt: 'Routify 404 log and bulk fix' },
+  { src: '/assets/routify/routify-6.png', alt: 'Routify pattern redirects' },
+];
+
+const faqs = [
+  { q: 'What is the difference between a 301 redirect and a 404 error?', a: 'A 301 redirect permanently sends visitors (and search engines) from an old URL to a new one, preserving your SEO value. A 404 is a "page not found" dead end. Routify helps you turn 404s into 301 redirects so no traffic or ranking is lost.' },
+  { q: 'Can I import redirects in bulk?', a: 'Yes. Upload a CSV to create hundreds of redirects at once — ideal for store migrations or large URL changes, instead of adding them one by one.' },
+  { q: 'Does Routify find broken links automatically?', a: 'Yes. The broken link finder detects broken links and redirect chains that quietly leak SEO value and frustrate shoppers, so you can fix them before they cost you.' },
+  { q: 'Can I redirect groups of URLs at once?', a: 'Yes. Pattern redirects let you redirect entire groups of URLs with a single rule — perfect for restructuring collections or moving a section of your store.' },
+  { q: 'Will Routify slow down my store?', a: 'No. Redirects are handled efficiently and do not add noticeable load to your storefront.' },
+  { q: 'Is Routify free?', a: 'Yes — Routify is free to install and use on your store, with no credit card required.' },
+];
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqs.map((f) => ({ "@type": "Question", "name": f.q, "acceptedAnswer": { "@type": "Answer", "text": f.a } })),
+};
+---
+<Base title={title} description={description} navCta={{ label: 'Install free', href: '#' }}>
+  <script type="application/ld+json" slot="head" set:html={JSON.stringify(appSchema)} />
+  <script type="application/ld+json" slot="head" set:html={JSON.stringify(faqSchema)} />
+
+  <header class="prod-hero">
+    <div class="wrap prod-hero-grid">
+      <div>
+        <a href="/#apps" class="back-link">← All apps</a>
+        <div class="app-ico"><img src="/assets/routify/routify-logo.png" alt="Routify" width="62" height="62" /></div>
+        <div class="prod-badge"><span class="tag tag-live">Live on the App Store · Free</span></div>
+        <h1>Keep your Shopify redirects healthy.</h1>
+        <p class="lead">Routify manages your 301 and 404 redirects so you never lose SEO value or leave a customer on a dead page — with a live health score, bulk import, and broken-link detection.</p>
+        <div class="hero-cta">
+          <!-- TODO: replace # with the real Routify App Store URL -->
+          <a href="#" class="btn btn-primary">Install free</a>
+          <a href="mailto:cognitiolab1@gmail.com" class="text-link">Questions? Email us →</a>
+        </div>
+      </div>
+      <MediaGallery images={images} />
+    </div>
+  </header>
+
+  <section class="feat-list">
+    <div class="wrap">
+      <div class="head-row"><div><h2>What Routify does</h2><p>Redirect management that protects your search rankings.</p></div></div>
+      <div class="feat-grid">
+        <div class="feat">
+          <div class="feat-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l3 8 4-16 3 8h4"/></svg></div>
+          <div><h3>Live SEO health score</h3><p>See the health of your store's redirects at a glance, so you catch problems before Google does.</p></div>
+        </div>
+        <div class="feat">
+          <div class="feat-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="m8 11 4 4 4-4"/><path d="M4 19h16"/></svg></div>
+          <div><h3>Bulk CSV import</h3><p>Migrating a store or fixing hundreds of URLs? Upload a CSV and create every redirect in one go.</p></div>
+        </div>
+        <div class="feat">
+          <div class="feat-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v4"/><path d="M12 16h.01"/></svg></div>
+          <div><h3>Broken link finder</h3><p>Routify spots broken links and redirect chains that quietly leak SEO value and frustrate shoppers.</p></div>
+        </div>
+        <div class="feat">
+          <div class="feat-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="m8 4-6 8 6 8"/><path d="m16 4 6 8-6 8"/></svg></div>
+          <div><h3>404 log &amp; bulk fix</h3><p>See exactly which pages are throwing 404s, then fix them in bulk — turning dead ends into conversions.</p></div>
+        </div>
+        <div class="feat">
+          <div class="feat-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg></div>
+          <div><h3>Pattern redirects</h3><p>Redirect whole groups of URLs with a pattern instead of one at a time — perfect for site restructures.</p></div>
+        </div>
+        <div class="feat">
+          <div class="feat-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+          <div><h3>Free, with real support</h3><p>Routify is free to install — and if you get stuck, you reach the people who built it, not a queue.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="steps">
+    <div class="wrap">
+      <div class="head-row"><div><h2>Live in three steps</h2><p>Protect your redirects in minutes.</p></div></div>
+      <div class="steps-grid">
+        <div class="step">
+          <div class="step-num">1</div>
+          <h3>Install Routify</h3>
+          <p>Add Routify to your store for free and open it from your Shopify admin — no code or setup required.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <h3>Add your redirects</h3>
+          <p>Create redirects one at a time, import hundreds at once with a CSV, or set up a pattern to cover a whole group of URLs.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <h3>Monitor your SEO health</h3>
+          <p>Routify flags broken links and 404s with a live health score, so you can fix problems before they cost you traffic.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="usecases">
+    <div class="wrap">
+      <div class="head-row"><div><h2>Who Routify is for</h2><p>Where redirect management makes or breaks your SEO.</p></div></div>
+      <div class="uc-grid">
+        <div class="uc">
+          <h3><span class="uc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="m8 11 4 4 4-4"/><path d="M4 19h16"/></svg></span>Store migrations</h3>
+          <p>Moving to Shopify or restructuring your store? Bulk-import your old URLs so nothing 404s and you keep the rankings you already earned.</p>
+        </div>
+        <div class="uc">
+          <h3><span class="uc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l3 8 4-16 3 8h4"/></svg></span>SEO teams</h3>
+          <p>Keep link equity intact and monitor redirect health from one dashboard, instead of discovering broken links after rankings have already dropped.</p>
+        </div>
+        <div class="uc">
+          <h3><span class="uc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg></span>Stores restructuring URLs</h3>
+          <p>Renaming collections or reorganising your catalog? Pattern redirects move entire groups of URLs at once, without touching them individually.</p>
+        </div>
+        <div class="uc">
+          <h3><span class="uc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="m8 4-6 8 6 8"/><path d="m16 4 6 8-6 8"/></svg></span>Recovering lost traffic</h3>
+          <p>Turn dead ends into conversions — see exactly which pages throw 404s and redirect them to the right place in bulk.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="faq">
+    <div class="wrap">
+      <div class="head-row"><div><h2>Frequently asked questions</h2><p>Everything you need to know before you install.</p></div></div>
+      <div class="faq-list">
+        {faqs.map((f) => (
+          <details class="faq-item">
+            <summary>{f.q}</summary>
+            <p>{f.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="cta">
+    <div class="wrap">
+      <h2>Protect your SEO in minutes.</h2>
+      <p>Routify is free to install — keep your redirects healthy today.</p>
+      <!-- TODO: replace # with the real Routify App Store URL -->
+      <a href="#" class="btn btn-primary">Get Routify free</a>
+    </div>
+  </section>
+</Base>
