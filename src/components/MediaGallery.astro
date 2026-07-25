@@ -7,10 +7,10 @@ const ytThumb = (id) => `https://i.ytimg.com/vi/${id}/hqdefault.jpg`;
 <div class="media-gallery" data-gallery>
   <div class="media-stage">
     {video && (
-      <div class="media-item media-video is-active" data-item="0">
+      <div class="media-item media-video is-active" data-item="0" data-video-id={video.id} data-video-title={video.title}>
         <button
           class="video-facade"
-          data-video-id={video.id}
+          data-open-lightbox
           style={`background-image:url(${ytThumb(video.id)})`}
           aria-label={`Play video: ${video.title}`}
         >
@@ -22,7 +22,7 @@ const ytThumb = (id) => `https://i.ytimg.com/vi/${id}/hqdefault.jpg`;
     )}
     {images.map((img, i) => (
       <div class={`media-item${!video && i === 0 ? ' is-active' : ''}`} data-item={video ? i + 1 : i}>
-        <img src={img.src} alt={img.alt} loading="lazy" width="1600" height="900" />
+        <img src={img.src} alt={img.alt} loading="lazy" width="1600" height="900" data-open-lightbox />
       </div>
     ))}
     <button class="media-arrow prev" data-prev aria-label="Previous">&#8249;</button>
@@ -44,6 +44,13 @@ const ytThumb = (id) => `https://i.ytimg.com/vi/${id}/hqdefault.jpg`;
       </button>
     ))}
   </div>
+
+  <div class="lightbox" data-lightbox>
+    <button class="lightbox-close" data-lb-close aria-label="Close">&times;</button>
+    <button class="lightbox-arrow prev" data-lb-prev aria-label="Previous">&#8249;</button>
+    <button class="lightbox-arrow next" data-lb-next aria-label="Next">&#8250;</button>
+    <div class="lightbox-content" data-lb-content></div>
+  </div>
 </div>
 
 <script>
@@ -54,35 +61,10 @@ const ytThumb = (id) => `https://i.ytimg.com/vi/${id}/hqdefault.jpg`;
     const prevBtn = g.querySelector('[data-prev]');
     const nextBtn = g.querySelector('[data-next]');
     const videoItem = g.querySelector('.media-video');
-    const facadeHTML = videoItem ? videoItem.innerHTML : null;
     let idx = 0;
 
-    function bindFacade() {
-      const facade = g.querySelector('[data-video-id]');
-      if (!facade) return;
-      facade.addEventListener('click', () => {
-        const id = facade.getAttribute('data-video-id');
-        const iframe = document.createElement('iframe');
-        iframe.src = 'https://www.youtube-nocookie.com/embed/' + id + '?autoplay=1&rel=0';
-        iframe.title = facade.getAttribute('aria-label') || 'Video';
-        iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
-        iframe.setAttribute('allowfullscreen', '');
-        videoItem.innerHTML = '';
-        videoItem.appendChild(iframe);
-      });
-    }
-
-    function resetVideo() {
-      if (videoItem && facadeHTML && videoItem.querySelector('iframe')) {
-        videoItem.innerHTML = facadeHTML;
-        bindFacade();
-      }
-    }
-
     function show(i) {
-      const prevIdx = idx;
       idx = (i + items.length) % items.length;
-      if (items[prevIdx] === videoItem && idx !== prevIdx) resetVideo();
       items.forEach((it, j) => it.classList.toggle('is-active', j === idx));
       thumbs.forEach((t, j) => t.classList.toggle('is-active', j === idx));
       const t = thumbs[idx];
@@ -94,6 +76,66 @@ const ytThumb = (id) => `https://i.ytimg.com/vi/${id}/hqdefault.jpg`;
     prevBtn && prevBtn.addEventListener('click', () => show(idx - 1));
     nextBtn && nextBtn.addEventListener('click', () => show(idx + 1));
     thumbs.forEach((t, j) => t.addEventListener('click', () => show(j)));
-    bindFacade();
+
+    // Lightbox: opens screenshots at full size, and plays the video large.
+    const lb = g.querySelector('[data-lightbox]');
+    const lbContent = g.querySelector('[data-lb-content]');
+    const lbClose = g.querySelector('[data-lb-close]');
+    const lbPrev = g.querySelector('[data-lb-prev]');
+    const lbNext = g.querySelector('[data-lb-next]');
+    let lbIdx = 0;
+
+    function renderLightbox(i) {
+      lbIdx = (i + items.length) % items.length;
+      const item = items[lbIdx];
+      lbContent.innerHTML = '';
+      if (item === videoItem) {
+        const id = videoItem.getAttribute('data-video-id');
+        const title = videoItem.getAttribute('data-video-title') || 'Video';
+        const wrap = document.createElement('div');
+        wrap.className = 'lb-video';
+        const iframe = document.createElement('iframe');
+        iframe.src = 'https://www.youtube-nocookie.com/embed/' + id + '?autoplay=1&rel=0';
+        iframe.title = title;
+        iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+        iframe.setAttribute('allowfullscreen', '');
+        wrap.appendChild(iframe);
+        lbContent.appendChild(wrap);
+      } else {
+        const src = item.querySelector('img').getAttribute('src');
+        const alt = item.querySelector('img').getAttribute('alt') || '';
+        const img = document.createElement('img');
+        img.src = src;
+        img.alt = alt;
+        lbContent.appendChild(img);
+      }
+    }
+
+    function openLightbox(i) {
+      renderLightbox(i);
+      lb.classList.add('is-open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+      lb.classList.remove('is-open');
+      lbContent.innerHTML = '';
+      document.body.style.overflow = '';
+    }
+
+    g.querySelectorAll('[data-open-lightbox]').forEach((el) => {
+      el.addEventListener('click', () => openLightbox(idx));
+    });
+
+    lbClose.addEventListener('click', closeLightbox);
+    lb.addEventListener('click', (e) => { if (e.target === lb) closeLightbox(); });
+    lbPrev.addEventListener('click', () => renderLightbox(lbIdx - 1));
+    lbNext.addEventListener('click', () => renderLightbox(lbIdx + 1));
+    document.addEventListener('keydown', (e) => {
+      if (!lb.classList.contains('is-open')) return;
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowLeft') renderLightbox(lbIdx - 1);
+      if (e.key === 'ArrowRight') renderLightbox(lbIdx + 1);
+    });
   });
 </script>
