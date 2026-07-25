@@ -12,7 +12,7 @@ const articleSchema = {
   "publisher": { "@type": "Organization", "name": "CognitioLab" },
 };
 ---
-<Base title={`${frontmatter.title} — CognitioLab`} description={frontmatter.description}>
+<Base title={`${frontmatter.title} | CognitioLab`} description={frontmatter.description}>
   <script type="application/ld+json" slot="head" set:html={JSON.stringify(articleSchema)} />
   <article class="article">
     <a href="/blog" class="back-link">← Back to blog</a>
