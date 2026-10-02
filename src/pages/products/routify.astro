@@ -38,7 +38,7 @@ const faqSchema = {
   "mainEntity": faqs.map((f) => ({ "@type": "Question", "name": f.q, "acceptedAnswer": { "@type": "Answer", "text": f.a } })),
 };
 ---
-<Base title={title} description={description} navCta={{ label: 'Install free', href: '#' }}>
+<Base title={title} description={description} navCta={{ label: 'Install free', href: 'https://apps.shopify.com/routify-seo-redirect' }}>
   <script type="application/ld+json" slot="head" set:html={JSON.stringify(appSchema)} />
   <script type="application/ld+json" slot="head" set:html={JSON.stringify(faqSchema)} />
 
@@ -51,8 +51,7 @@ const faqSchema = {
         <h1>Keep your Shopify redirects healthy.</h1>
         <p class="lead">Routify manages your 301 and 404 redirects so you never lose SEO value or leave a customer on a dead page, with a live health score, bulk import, and broken-link detection.</p>
         <div class="hero-cta">
-          <!-- TODO: replace # with the real Routify App Store URL -->
-          <a href="#" class="btn btn-primary">Install free</a>
+          <a href="https://apps.shopify.com/routify-seo-redirect" class="btn btn-primary">Install free</a>
           <a href="mailto:cognitiolab1@gmail.com" class="text-link">Questions? Email us →</a>
         </div>
       </div>
@@ -151,8 +150,7 @@ const faqSchema = {
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Live SEO health score &amp; broken link finder</li>
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Real human support, no queue</li>
         </ul>
-        <!-- TODO: replace # with the real Routify App Store URL -->
-        <a href="#" class="btn btn-primary">Install free</a>
+        <a href="https://apps.shopify.com/routify-seo-redirect" class="btn btn-primary">Install free</a>
       </div>
     </div>
   </section>
@@ -175,8 +173,7 @@ const faqSchema = {
     <div class="wrap">
       <h2>Protect your SEO in minutes.</h2>
       <p>Routify is free to install. Keep your redirects healthy today.</p>
-      <!-- TODO: replace # with the real Routify App Store URL -->
-      <a href="#" class="btn btn-primary">Get Routify free</a>
+      <a href="https://apps.shopify.com/routify-seo-redirect" class="btn btn-primary">Get Routify free</a>
     </div>
   </section>
 </Base>

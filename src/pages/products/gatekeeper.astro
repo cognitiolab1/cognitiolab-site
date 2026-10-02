@@ -1,0 +1,186 @@
+---
+import Base from '../../layouts/Base.astro';
+import MediaGallery from '../../components/MediaGallery.astro';
+
+const appUrl = 'https://apps.shopify.com/gatekeeper-6';
+const title = 'GateKeeper: hide prices & lock products on Shopify | CognitioLab';
+const description = 'GateKeeper locks Shopify products, collections, pages and checkout, hides prices until login, and unlocks access with customer tags, emails, passcodes or secret links. Free to install.';
+
+const appSchema = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "GateKeeper",
+  "alternateName": "GK: Hide Price & Lock Products",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Shopify",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "description": "Lock products, prices, collections, pages and checkout on Shopify, and choose exactly who gets access.",
+  "url": appUrl,
+};
+
+const video = { id: 'hTvC5OqQj7Q', title: 'GateKeeper overview' };
+
+const images = [
+  { src: 'https://cdn.shopify.com/app-store/listing_images/dceae45ce42d4e6822a099d84a3d5eb1/desktop_screenshot/CO7x9PK0_JUDEAE=.png', alt: 'Every GateKeeper rule is three choices: Lock, Key and Action' },
+  { src: 'https://cdn.shopify.com/app-store/listing_images/dceae45ce42d4e6822a099d84a3d5eb1/desktop_screenshot/CJrL_vK0_JUDEAE=.png', alt: 'One product, four ways to lock it: hide, gate, passcode or wall' },
+  { src: 'https://cdn.shopify.com/app-store/listing_images/dceae45ce42d4e6822a099d84a3d5eb1/desktop_screenshot/CJSjiPO0_JUDEAE=.png', alt: 'Nine keys to unlock content, combined in one rule' },
+  { src: 'https://cdn.shopify.com/app-store/listing_images/dceae45ce42d4e6822a099d84a3d5eb1/desktop_screenshot/CJG7r7K-_JUDEAE=.png', alt: 'Ten ready-made GateKeeper templates' },
+  { src: 'https://cdn.shopify.com/app-store/listing_images/dceae45ce42d4e6822a099d84a3d5eb1/desktop_screenshot/CMCYm_O0_JUDEAE=.png', alt: 'Starting a rule from a GateKeeper template' },
+];
+
+const faqs = [
+  { q: 'Can I hide prices until a customer logs in?', a: 'Yes. Lock a product or collection with the "logged-in customers" key and choose "hide the price", or hide Add to Cart. Shoppers still see the product, but the price only appears once they sign in.' },
+  { q: 'How do I set up a wholesale or B2B store?', a: 'Start from the B2B wholesale template. Tag your approved wholesale customers in Shopify, and GateKeeper shows wholesale products and prices only to customers with that tag. Everyone else sees a placeholder or a login wall.' },
+  { q: 'What can I lock?', a: 'Products, collections, pages, specific URLs, blog posts, checkout, or your whole storefront.' },
+  { q: 'Who can unlock it?', a: 'You choose the key: logged-in customers, customer tags, specific emails, email domains, a passcode, a secret link, or country rules. You can combine several keys in one rule.' },
+  { q: 'What do blocked visitors see?', a: 'Your choice per rule: hide the product entirely, show a placeholder, hide the price or the Add to Cart button, or show a login wall.' },
+  { q: 'How do I know a rule does what I expect?', a: 'GateKeeper shows a live preview and reads every rule back to you in plain English before it goes live, so you can check it without testing on your storefront.' },
+  { q: 'Is GateKeeper free?', a: 'Yes, GateKeeper is free to install and use.' },
+];
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqs.map((f) => ({ "@type": "Question", "name": f.q, "acceptedAnswer": { "@type": "Answer", "text": f.a } })),
+};
+
+const check = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>';
+---
+<Base title={title} description={description} navCta={{ label: 'Install free', href: appUrl }}>
+  <script type="application/ld+json" slot="head" set:html={JSON.stringify(appSchema)} />
+  <script type="application/ld+json" slot="head" set:html={JSON.stringify(faqSchema)} />
+
+  <header class="prod-hero">
+    <div class="wrap prod-hero-grid">
+      <div>
+        <a href="/#apps" class="back-link">← All apps</a>
+        <div class="app-ico"><img src="https://cdn.shopify.com/app-store/listing_images/dceae45ce42d4e6822a099d84a3d5eb1/icon/CKn41N-E-5UDEAE=.png" alt="GateKeeper" width="62" height="62" /></div>
+        <div class="prod-badge"><span class="tag tag-live">Live on the App Store · Free</span></div>
+        <h1>Decide exactly who sees what in your store.</h1>
+        <p class="lead">GateKeeper locks products, prices, collections, pages and checkout, then lets in only the customers you choose: by login, customer tag, email, passcode, secret link or country.</p>
+        <div class="hero-cta">
+          <a href={appUrl} class="btn btn-primary">Install free</a>
+          <a href="mailto:cognitiolab1@gmail.com" class="text-link">Questions? Email us →</a>
+        </div>
+      </div>
+      <MediaGallery video={video} images={images} />
+    </div>
+  </header>
+
+  <section class="feat-list">
+    <div class="wrap">
+      <div class="head-row"><div><h2>What GateKeeper does</h2><p>Every rule is three choices: a Lock, a Key and an Action.</p></div></div>
+      <div class="feat-grid">
+        <div class="feat">
+          <div class="feat-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></div>
+          <div><h3>Lock anything</h3><p>Products, collections, pages, URLs, blog posts, checkout, or your whole storefront.</p></div>
+        </div>
+        <div class="feat">
+          <div class="feat-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="15" r="4"/><path d="m10.8 12.2 9.2-9.2"/><path d="m17 6 3 3"/><path d="m15 8 2 2"/></svg></div>
+          <div><h3>Nine ways to unlock</h3><p>Logged-in customers, customer tags, emails, email domains, a passcode, a secret link or country rules, combined in one rule.</p></div>
+        </div>
+        <div class="feat">
+          <div class="feat-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><path d="M3 3l18 18"/></svg></div>
+          <div><h3>Hide prices until login</h3><p>Show products to everyone but reveal prices, or Add to Cart, only to signed-in or approved customers.</p></div>
+        </div>
+        <div class="feat">
+          <div class="feat-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18"/><path d="M8 14h8"/></svg></div>
+          <div><h3>Choose what blocked visitors see</h3><p>Hide the product, show a placeholder, hide the price or Add to Cart, or show a login wall.</p></div>
+        </div>
+        <div class="feat">
+          <div class="feat-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></div>
+          <div><h3>10 ready-made templates</h3><p>B2B wholesale, members only, coming soon, early access and more, set up in a click.</p></div>
+        </div>
+        <div class="feat">
+          <div class="feat-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+          <div><h3>Read it back in plain English</h3><p>A live preview and a plain-English summary of every rule before it goes live, so there are no surprises.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="steps">
+    <div class="wrap">
+      <div class="head-row"><div><h2>Live in three steps</h2><p>Lock your first product in minutes.</p></div></div>
+      <div class="steps-grid">
+        <div class="step">
+          <div class="step-num">1</div>
+          <h3>Pick a template or a lock</h3>
+          <p>Start from one of ten templates, or choose what to lock: a product, collection, page, URL or your whole store.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <h3>Choose the key</h3>
+          <p>Decide who gets in: logged-in customers, a customer tag, an email domain, a passcode, a secret link or a country.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <h3>Check it and go live</h3>
+          <p>Pick what everyone else sees, read the rule back in plain English, preview it, and switch it on.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="usecases">
+    <div class="wrap">
+      <div class="head-row"><div><h2>Who GateKeeper is for</h2><p>Stores that need different customers to see different things.</p></div></div>
+      <div class="uc-grid">
+        <div class="uc">
+          <h3><span class="uc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M5 21V7l7-4 7 4v14"/><path d="M9 21v-6h6v6"/></svg></span>Wholesale &amp; B2B</h3>
+          <p>Hide wholesale prices from the public and show them only to approved, tagged trade customers.</p>
+        </div>
+        <div class="uc">
+          <h3><span class="uc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg></span>Members-only stores</h3>
+          <p>Keep products, pages or the whole store behind a login, a passcode or an invitation link.</p>
+        </div>
+        <div class="uc">
+          <h3><span class="uc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></span>Launches &amp; early access</h3>
+          <p>Show a coming-soon placeholder to everyone, and give VIPs early access with a secret link or tag.</p>
+        </div>
+        <div class="uc">
+          <h3><span class="uc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3a14 14 0 0 1 0 18"/><path d="M12 3a14 14 0 0 0 0 18"/></svg></span>Country restrictions</h3>
+          <p>Limit products or checkout to the countries you can actually sell or ship to.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="pricing" id="pricing">
+    <div class="wrap">
+      <div class="head-row"><div><h2>Pricing</h2><p>Free to install and use.</p></div></div>
+      <div class="price-card">
+        <div class="amount">$0.00 <em>/ month</em></div>
+        <div class="price-note">Free to install, free to use</div>
+        <ul class="price-list">
+          <li><Fragment set:html={check} /> Lock products, collections, pages, URLs, checkout or the whole store</li>
+          <li><Fragment set:html={check} /> Nine unlock keys, combinable in one rule</li>
+          <li><Fragment set:html={check} /> 10 templates, live preview, plain-English summaries</li>
+          <li><Fragment set:html={check} /> Real human support, no queue</li>
+        </ul>
+        <a href={appUrl} class="btn btn-primary">Install free</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="faq">
+    <div class="wrap">
+      <div class="head-row"><div><h2>Frequently asked questions</h2><p>Everything you need to know before you install.</p></div></div>
+      <div class="faq-list">
+        {faqs.map((f) => (
+          <details class="faq-item">
+            <summary>{f.q}</summary>
+            <p>{f.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="cta">
+    <div class="wrap">
+      <h2>Control who sees what, today.</h2>
+      <p>GateKeeper is free to install. Lock your first product in minutes.</p>
+      <a href={appUrl} class="btn btn-primary">Get GateKeeper free</a>
+    </div>
+  </section>
+</Base>
