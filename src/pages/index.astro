@@ -13,19 +13,33 @@ const orgSchema = {
 <Base navCta={{ label: 'Browse apps', href: '#apps' }}>
   <script type="application/ld+json" slot="head" set:html={JSON.stringify(orgSchema)} />
 
-  <header class="hero">
-    <div class="hero-bg" aria-hidden="true"></div>
-    <span class="hero-dot d1" aria-hidden="true"></span>
-    <span class="hero-dot d2" aria-hidden="true"></span>
-    <span class="hero-dot d3" aria-hidden="true"></span>
-    <div class="wrap">
-      <div class="hero-eyebrow"><span class="live-dot"></span> A Shopify app studio · 4 apps live</div>
-      <h1>Practical Shopify apps, built right.</h1>
-      <p class="hero-lead">We build small, focused apps that fix real problems at checkout and across your store, then answer the phone when you need us. No bloat. No filler features.</p>
-      <p class="hero-rotate">Made for your <span class="rot-word" id="rotword">checkout</span></p>
-      <div class="hero-cta">
-        <a href="#apps" class="btn btn-primary">See our apps</a>
-        <a href="/blog" class="text-link">Read the blog →</a>
+  <header class="home-hero">
+    <div class="wrap home-hero-grid">
+      <div>
+        <p class="home-kicker">Shopify apps by CognitioLab</p>
+        <h1>Your checkout should work the way your store does.</h1>
+        <p class="home-lead">Hide the wrong payment options, charge fairly for cash on delivery, and decide who sees your prices. No code needed.</p>
+        <div class="hero-cta">
+          <a href="#apps" class="btn btn-primary">See the apps</a>
+          <span class="home-rating"><b>★ 5.0</b> across 7 App Store reviews</span>
+        </div>
+      </div>
+      <div class="co-mock" role="img" aria-label="Example checkout: a prepaid discount on card payments, a renamed payment method, and Cash on Delivery hidden on a high-value order">
+        <div class="co-head"><span>Payment</span><span class="co-total">Order total $640.00</span></div>
+        <div class="co-row on">
+          <span class="co-radio"></span>
+          <div><b>Credit card</b><small>ChargeIt: 5% prepaid discount</small></div>
+          <span class="co-amt">−$32.00</span>
+        </div>
+        <div class="co-row">
+          <span class="co-radio"></span>
+          <div><b>JazzCash</b><small>PayShift: renamed from “Online Payment Options”</small></div>
+        </div>
+        <div class="co-row off">
+          <span class="co-radio"></span>
+          <div><b>Cash on Delivery</b><small>PayShift: hidden on orders over $500</small></div>
+          <span class="co-pill">Hidden</span>
+        </div>
       </div>
     </div>
   </header>
@@ -143,23 +157,4 @@ const orgSchema = {
       <a href="mailto:cognitiolab1@gmail.com" class="btn btn-primary">Email the team</a>
     </div>
   </section>
-
-  <script is:inline>
-    (function () {
-      const words = ['checkout', 'redirects', 'SEO', 'payments', 'wholesale', 'COD fees', 'conversions'];
-      const el = document.getElementById('rotword');
-      if (!el || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-      let i = 0;
-      setInterval(function () {
-        i = (i + 1) % words.length;
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(-4px)';
-        setTimeout(function () {
-          el.textContent = words[i];
-          el.style.opacity = '1';
-          el.style.transform = 'translateY(0)';
-        }, 250);
-      }, 2200);
-    })();
-  </script>
 </Base>
