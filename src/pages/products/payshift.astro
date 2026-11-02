@@ -9,10 +9,11 @@ const appSchema = {
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
   "name": "PayShift",
+  "alternateName": "PayShift Hide Payment Shipping",
   "applicationCategory": "BusinessApplication",
   "operatingSystem": "Shopify",
   "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
-  "aggregateRating": { "@type": "AggregateRating", "ratingValue": "5", "reviewCount": "1" },
+  "aggregateRating": { "@type": "AggregateRating", "ratingValue": "5", "reviewCount": "4" },
   "description": "Hide, reorder, and rename payment and shipping methods at Shopify checkout.",
 };
 
@@ -31,7 +32,8 @@ const faqs = [
   { q: 'Can I rename a payment gateway label?', a: 'Yes. Rename any payment method to a clearer name your customers recognise, for example showing "JazzCash" instead of a generic gateway label like "Online Payment Options."' },
   { q: 'Can I hide a payment method based on the cart?', a: 'Yes. Hide methods based on conditions such as cart total, country, products, or the shipping method selected, for example hiding Cash on Delivery for high-value orders.' },
   { q: 'Does PayShift work for shipping methods too?', a: 'Yes. The same hide, rename, and reorder rules apply to shipping methods, so you can tidy up your delivery options the same way you tidy up payments.' },
-  { q: 'Is PayShift free?', a: 'Yes, PayShift is free to install and use on your store, with no credit card required.' },
+  { q: 'Is PayShift free?', a: 'PayShift has a free plan with unlimited hide, rename, and reorder rules for payment and shipping methods, applied to all checkouts. To apply rules only when conditions match, Pro is $3.99/month or $34/year, with a 7-day free trial.' },
+  { q: 'Is the PayShift admin available in other languages?', a: 'Yes. You can use the PayShift admin in English, Spanish, French, German, Portuguese (Brazil), Italian, Arabic, or Turkish.' },
   { q: 'What if I need help setting up a rule?', a: "Message us and we'll build the rule for you, free. You reach the people who made the app, usually within minutes." },
 ];
 const faqSchema = {

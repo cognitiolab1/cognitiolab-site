@@ -10,7 +10,7 @@ const appSchema = {
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
   "name": "ChargeIt",
-  "alternateName": "ChargeIt: Payment Method Fees",
+  "alternateName": "ChrgIt Payment Method Discount",
   "applicationCategory": "BusinessApplication",
   "operatingSystem": "Shopify",
   "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
@@ -32,10 +32,11 @@ const images = [
 const faqs = [
   { q: 'Can I charge extra for cash on delivery?', a: 'Yes. Create a rule for your cash on delivery method and set a fixed amount (for example 3) or a percentage. ChargeIt adds it to the order as a line you name, such as "COD handling fee".' },
   { q: 'Can I give a discount for paying upfront?', a: 'Yes. Set a discount on your card or other prepaid methods to nudge customers away from cash on delivery.' },
-  { q: 'Where does the customer choose how to pay?', a: 'On the cart page, using a payment method selector styled to your theme. The fee or discount appears there, before checkout, so there are no surprises.' },
+  { q: 'Where does the customer choose how to pay?', a: 'On the cart page, using a payment method selector styled to your theme, or in checkout. ChargeIt then adds the fee or applies the discount on a line you name.' },
   { q: 'Can a customer pick a prepaid method for the discount and then switch to cash on delivery?', a: 'No. Checkout only offers the payment method the customer chose in the cart.' },
   { q: 'Is the fee added to the shipping price?', a: 'No. It appears as its own named line on the order, separate from shipping.' },
   { q: 'Can I limit a rule to some orders only?', a: 'Yes. Narrow any rule by country, cart value, customer type, customer tags or products, and tier the amount by cart subtotal.' },
+  { q: 'Is the ChargeIt admin available in other languages?', a: 'Yes. You can use the ChargeIt admin in English, Spanish, French, German, Portuguese (Brazil), Italian, Arabic or Turkish.' },
   { q: 'Is ChargeIt free?', a: 'Yes, ChargeIt is free to install and use.' },
 ];
 const faqSchema = {
@@ -57,7 +58,7 @@ const check = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke
         <div class="app-ico"><img src="https://cdn.shopify.com/app-store/listing_images/bf644a28103312af9fdee59bc1167edd/icon/CLLC4OGH5JYDEAE=.png" alt="ChargeIt" width="62" height="62" /></div>
         <div class="prod-badge"><span class="tag tag-live">Live on the App Store · Free</span></div>
         <h1>Price cash on delivery and prepaid orders differently.</h1>
-        <p class="lead">Cash on delivery costs more to fulfil than a prepaid order, but most stores charge the same for both. ChargeIt adds a fee or a discount based on the payment method your customer picks.</p>
+        <p class="lead">Cash on delivery costs more to fulfil than a prepaid order, but most stores charge the same for both. ChargeIt adds a fee or a discount based on the payment method your customer picks. Find it on the App Store as ChrgIt Payment Method Discount.</p>
         <div class="hero-cta">
           <a href={appUrl} class="btn btn-primary">Install free</a>
           <a href="mailto:cognitiolab1@gmail.com" class="text-link">Questions? Email us →</a>
@@ -89,11 +90,23 @@ const check = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke
         </div>
         <div class="feat">
           <div class="feat-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg></div>
-          <div><h3>Payment choice in the cart</h3><p>A payment method selector on the cart page, styled to your theme with six colour presets.</p></div>
+          <div><h3>Payment choice in the cart or checkout</h3><p>Shoppers say how they plan to pay on the cart page, with a selector styled to your theme, or in checkout.</p></div>
         </div>
         <div class="feat">
           <div class="feat-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l14-5v12L3 13z"/><path d="M17 8a3 3 0 0 1 0 6"/></svg></div>
-          <div><h3>Announce your offer</h3><p>Tell shoppers about a prepaid discount with an announcement bar, with an optional countdown.</p></div>
+          <div><h3>Announce your offer</h3><p>Tell shoppers about a payment offer at the top of your store or on product pages, with an optional countdown on the announcement bar.</p></div>
+        </div>
+        <div class="feat">
+          <div class="feat-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1v22"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+          <div><h3>Price per method on product pages</h3><p>Show shoppers what they would pay with each method before they reach the cart.</p></div>
+        </div>
+        <div class="feat">
+          <div class="feat-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6h13"/><path d="M8 12h13"/><path d="M8 18h13"/><path d="M3 6h.01"/><path d="M3 12h.01"/><path d="M3 18h.01"/></svg></div>
+          <div><h3>Methods with no fee or discount</h3><p>List other payment methods in the cart widget too, such as Cash on Delivery with no extra charge.</p></div>
+        </div>
+        <div class="feat">
+          <div class="feat-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m8 12 3 3 5-6"/></svg></div>
+          <div><h3>Require a choice before checkout</h3><p>Optionally ask shoppers to pick a payment method in the cart before they continue to checkout.</p></div>
         </div>
       </div>
     </div>
@@ -116,7 +129,7 @@ const check = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke
         <div class="step">
           <div class="step-num">3</div>
           <h3>Customers choose, ChargeIt applies</h3>
-          <p>Shoppers pick how they will pay in the cart, and the fee or discount appears there, before checkout.</p>
+          <p>Shoppers pick how they will pay on the cart page or in checkout, and ChargeIt adds the fee or discount on a line you name.</p>
         </div>
       </div>
     </div>

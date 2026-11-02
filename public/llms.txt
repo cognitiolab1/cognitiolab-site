@@ -1,0 +1,23 @@
+# CognitioLab
+
+> CognitioLab is a small studio building focused Shopify apps for merchants. Four apps are live on the Shopify App Store: PayShift, ChargeIt, GateKeeper and Routify.
+
+## Apps
+
+- [PayShift](https://thecognitiolab.com/products/payshift/): Hide, rename and reorder payment and shipping methods at Shopify checkout. The free plan covers unlimited rules that apply to all checkouts. Pro adds 30+ conditions with AND/OR logic for $3.99/month or $34/year, with a 7-day free trial. Admin available in English, Spanish, French, German, Portuguese (Brazil), Italian, Arabic and Turkish. App Store: https://apps.shopify.com/payshift
+- [ChargeIt](https://thecognitiolab.com/products/chargeit/): Add a fee or discount based on the payment method the customer picks, such as a Cash on Delivery fee or a prepaid discount. Shoppers choose on the cart page or in checkout, and prices per method can show on product pages. Free. Admin available in English, Spanish, French, German, Portuguese (Brazil), Italian, Arabic and Turkish. Listed on the App Store as "ChrgIt Payment Method Discount": https://apps.shopify.com/chargeit
+- [GateKeeper](https://thecognitiolab.com/products/gatekeeper/): Lock products, collections, pages, URLs, blog posts, checkout or the whole store, hide prices until login, and choose who gets access. Free. Listed on the App Store as "GK: Hide Price & Lock Products": https://apps.shopify.com/gatekeeper-6
+- [Routify](https://thecognitiolab.com/products/routify/): Manage 301 redirects, find and fix 404 errors, import redirects by CSV and scan for broken links. Free. App Store: https://apps.shopify.com/routify-seo-redirect
+
+## Guides
+
+- [How to rename a payment method at Shopify checkout](https://thecognitiolab.com/blog/rename-payment-methods-shopify/)
+- [How to hide Cash on Delivery on high-value orders in Shopify](https://thecognitiolab.com/blog/hide-cash-on-delivery-high-value-orders-shopify/)
+- [How to add a Cash on Delivery fee in Shopify](https://thecognitiolab.com/blog/add-cash-on-delivery-fee-shopify/)
+- [How to offer a discount for prepaid orders in Shopify](https://thecognitiolab.com/blog/prepaid-discount-shopify/)
+- [How to hide prices until customers log in on Shopify](https://thecognitiolab.com/blog/hide-prices-until-login-shopify/)
+- [How to give VIP customers early access to a product launch on Shopify](https://thecognitiolab.com/blog/early-access-product-launch-shopify/)
+
+## Contact
+
+- Email: cognitiolab1@gmail.com

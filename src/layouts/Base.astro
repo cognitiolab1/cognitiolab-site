@@ -1,15 +1,17 @@
 ---
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
+import ConsentBanner from '../components/ConsentBanner.astro';
 import '../styles/global.css';
 
 const {
   title = 'CognitioLab: Practical Shopify apps, built right',
-  description = 'A small studio building focused Shopify apps that solve real merchant problems, including Routify and PayShift. No bloat, no complexity, real human support.',
+  description = 'A small studio building focused Shopify apps that solve real merchant problems: PayShift, ChargeIt, GateKeeper and Routify. No bloat, no complexity, real human support.',
   navCta,
 } = Astro.props;
 
 const canonical = new URL(Astro.url.pathname, Astro.site).href;
+const ogImage = new URL('/assets/og-default.png', Astro.site).href;
 ---
 <!DOCTYPE html>
 <html lang="en">
@@ -24,6 +26,11 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href;
   <meta property="og:description" content={description} />
   <meta property="og:type" content="website" />
   <meta property="og:url" content={canonical} />
+  <meta property="og:site_name" content="CognitioLab" />
+  <meta property="og:image" content={ogImage} />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet" />
@@ -33,5 +40,6 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href;
   <Nav cta={navCta} />
   <slot />
   <Footer />
+  <ConsentBanner />
 </body>
 </html>
