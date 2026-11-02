@@ -14,29 +14,25 @@ const heroApps = [
   {
     name: 'PayShift',
     icon: '/assets/payshift/payshift-avatar.png',
-    title: 'Your checkout should work the way your store does.',
-    lead: 'Hide, rename and reorder payment and shipping methods with rules that fit your store. No code needed.',
+    caption: 'Hide, rename and reorder payment and shipping methods.',
     href: '/products/payshift',
   },
   {
     name: 'ChargeIt',
     icon: 'https://cdn.shopify.com/app-store/listing_images/bf644a28103312af9fdee59bc1167edd/icon/CLLC4OGH5JYDEAE=.png',
-    title: 'Price cash on delivery and prepaid orders differently.',
-    lead: 'Add a fee for cash on delivery or reward prepaid orders with a discount, based on how your customer pays.',
+    caption: 'Add a COD fee or reward prepaid orders with a discount.',
     href: '/products/chargeit',
   },
   {
     name: 'GateKeeper',
     icon: 'https://cdn.shopify.com/app-store/listing_images/dceae45ce42d4e6822a099d84a3d5eb1/icon/CKn41N-E-5UDEAE=.png',
-    title: 'Decide exactly who sees what in your store.',
-    lead: 'Hide prices until login and lock products, pages or your whole store for wholesale and VIP customers.',
+    caption: 'Hide prices until login and lock products or pages.',
     href: '/products/gatekeeper',
   },
   {
     name: 'Routify',
     icon: '/assets/routify/routify-logo.png',
-    title: 'Stop losing visitors to broken links.',
-    lead: 'Find 404 errors, fix them in bulk and manage your redirects from one place, so your SEO stays protected.',
+    caption: 'Find 404 errors and fix redirects in bulk.',
     href: '/products/routify',
   },
 ];
@@ -45,31 +41,30 @@ const heroApps = [
   <script type="application/ld+json" slot="head" set:html={JSON.stringify(orgSchema)} />
 
   <header class="home-hero" id="home-hero">
-    <div class="wrap">
-      <div class="hero-tabs" role="tablist" aria-label="CognitioLab apps">
-        {heroApps.map((app, i) => (
-          <button type="button" class:list={['hero-tab', { active: i === 0 }]} role="tab" id={`hero-tab-${i}`} aria-controls={`hero-panel-${i}`} aria-selected={i === 0 ? 'true' : 'false'}>
-            <img src={app.icon} alt="" width="24" height="24" />
-            {app.name}
-          </button>
-        ))}
+    <div class="wrap home-hero-grid">
+      <div>
+        <p class="home-kicker">Shopify apps by CognitioLab</p>
+        <h1 class="home-title">Small Shopify apps that fix real store problems.</h1>
+        <p class="home-lead">Control your checkout, charge for cash on delivery, hide prices from the public and fix broken links. No code needed.</p>
+        <div class="hero-cta">
+          <a href="#apps" class="btn btn-primary">See the apps</a>
+          <span class="home-rating"><b>★ 5.0</b> across 7 reviews of our apps</span>
+        </div>
       </div>
 
-      <div class="hero-panels">
-        {heroApps.map((app, i) => {
-          const Title = i === 0 ? 'h1' : 'h2';
-          return (
-            <div class:list={['hero-panel', { active: i === 0 }]} role="tabpanel" id={`hero-panel-${i}`} aria-labelledby={`hero-tab-${i}`}>
-              <div class="home-hero-grid">
-                <div>
-                  <Title class="home-title">{app.title}</Title>
-                  <p class="home-lead">{app.lead}</p>
-                  <div class="hero-cta">
-                    <a href={app.href} class="btn btn-primary">See {app.name}</a>
-                    <span class="home-rating"><b>★ 5.0</b> across 7 reviews of our apps</span>
-                  </div>
-                </div>
+      <div class="hero-showcase" id="hero-showcase">
+        <div class="hero-tabs" role="tablist" aria-label="CognitioLab apps">
+          {heroApps.map((app, i) => (
+            <button type="button" class:list={['hero-tab', { active: i === 0 }]} role="tab" id={`hero-tab-${i}`} aria-controls={`hero-panel-${i}`} aria-selected={i === 0 ? 'true' : 'false'}>
+              <img src={app.icon} alt="" width="22" height="22" />
+              {app.name}
+            </button>
+          ))}
+        </div>
 
+        <div class="hero-panels">
+          {heroApps.map((app, i) => (
+            <div class:list={['hero-panel', { active: i === 0 }]} role="tabpanel" id={`hero-panel-${i}`} aria-labelledby={`hero-tab-${i}`}>
                 {i === 0 && (
                   <div class="co-mock" role="img" aria-label="Example checkout: a renamed payment method, a reordered list, and Cash on Delivery hidden on a high-value order">
                     <div class="co-head"><span>Payment</span><span class="co-total">Order total $640.00</span></div>
@@ -140,24 +135,31 @@ const heroApps = [
                     </div>
                   </div>
                 )}
-              </div>
+
+                <p class="hero-caption">{app.caption} <a href={app.href} class="text-link">See {app.name} →</a></p>
             </div>
-          );
-        })}
+          ))}
+        </div>
       </div>
     </div>
   </header>
 
   <script is:inline>
     (function () {
-      const hero = document.getElementById('home-hero');
+      const hero = document.getElementById('hero-showcase');
       const tabs = Array.from(hero.querySelectorAll('.hero-tab'));
       const panels = Array.from(hero.querySelectorAll('.hero-panel'));
       const DELAY = 7000;
+      const RESUME_AFTER_CLICK = 15000;
+      const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       let current = 0;
       let timer = null;
+      let resume = null;
+      let held = false;
 
       function show(i) {
+        if (i === current) return;
+        const leaving = panels[current];
         current = i;
         tabs.forEach(function (tab, n) {
           tab.classList.toggle('active', n === i);
@@ -166,29 +168,45 @@ const heroApps = [
         panels.forEach(function (panel, n) {
           panel.classList.toggle('active', n === i);
         });
+        leaving.classList.add('leaving');
+        setTimeout(function () { leaving.classList.remove('leaving'); }, 500);
       }
       function stop() {
         clearInterval(timer);
         timer = null;
       }
       function start() {
-        if (timer || hero.dataset.stopped) return;
+        if (timer || held || resume || reduced) return;
         timer = setInterval(function () { show((current + 1) % tabs.length); }, DELAY);
+      }
+      function hold() {
+        held = true;
+        stop();
+      }
+      function release() {
+        held = false;
+        start();
       }
 
       tabs.forEach(function (tab, i) {
         tab.addEventListener('click', function () {
-          hero.dataset.stopped = 'true';
           stop();
           show(i);
+          clearTimeout(resume);
+          resume = setTimeout(function () {
+            resume = null;
+            start();
+          }, RESUME_AFTER_CLICK);
         });
       });
-      hero.addEventListener('mouseenter', stop);
-      hero.addEventListener('mouseleave', start);
-      hero.addEventListener('focusin', stop);
+      hero.addEventListener('mouseenter', hold);
+      hero.addEventListener('mouseleave', release);
+      hero.addEventListener('focusin', function (e) {
+        if (e.target.matches(':focus-visible')) hold();
+      });
+      hero.addEventListener('focusout', release);
 
-      if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) start();
-      else hero.dataset.stopped = 'true';
+      start();
     })();
   </script>
 
