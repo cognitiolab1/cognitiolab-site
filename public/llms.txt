@@ -15,6 +15,9 @@
 - [How to hide Cash on Delivery on high-value orders in Shopify](https://thecognitiolab.com/blog/hide-cash-on-delivery-high-value-orders-shopify/)
 - [How to add a Cash on Delivery fee in Shopify](https://thecognitiolab.com/blog/add-cash-on-delivery-fee-shopify/)
 - [How to offer a discount for prepaid orders in Shopify](https://thecognitiolab.com/blog/prepaid-discount-shopify/)
+- [How to set a Cash on Delivery fee by order value in Shopify](https://thecognitiolab.com/blog/tiered-cod-fee-by-order-value-shopify/)
+- [How to charge a Cash on Delivery fee only in certain countries on Shopify](https://thecognitiolab.com/blog/cod-fee-by-country-shopify/)
+- [COD fee or prepaid discount: which should your Shopify store use?](https://thecognitiolab.com/blog/cod-fee-vs-prepaid-discount-shopify/)
 - [How to hide prices until customers log in on Shopify](https://thecognitiolab.com/blog/hide-prices-until-login-shopify/)
 - [How to give VIP customers early access to a product launch on Shopify](https://thecognitiolab.com/blog/early-access-product-launch-shopify/)
 
