@@ -9,40 +9,188 @@ const orgSchema = {
   "description": "A studio building focused Shopify apps that solve real merchant problems.",
   "sameAs": ["https://x.com/cognitiolab", "https://www.linkedin.com/company/cognitiolabs"],
 };
+
+const heroApps = [
+  {
+    name: 'PayShift',
+    icon: '/assets/payshift/payshift-avatar.png',
+    title: 'Your checkout should work the way your store does.',
+    lead: 'Hide, rename and reorder payment and shipping methods with rules that fit your store. No code needed.',
+    href: '/products/payshift',
+  },
+  {
+    name: 'ChargeIt',
+    icon: 'https://cdn.shopify.com/app-store/listing_images/bf644a28103312af9fdee59bc1167edd/icon/CLLC4OGH5JYDEAE=.png',
+    title: 'Price cash on delivery and prepaid orders differently.',
+    lead: 'Add a fee for cash on delivery or reward prepaid orders with a discount, based on how your customer pays.',
+    href: '/products/chargeit',
+  },
+  {
+    name: 'GateKeeper',
+    icon: 'https://cdn.shopify.com/app-store/listing_images/dceae45ce42d4e6822a099d84a3d5eb1/icon/CKn41N-E-5UDEAE=.png',
+    title: 'Decide exactly who sees what in your store.',
+    lead: 'Hide prices until login and lock products, pages or your whole store for wholesale and VIP customers.',
+    href: '/products/gatekeeper',
+  },
+  {
+    name: 'Routify',
+    icon: '/assets/routify/routify-logo.png',
+    title: 'Stop losing visitors to broken links.',
+    lead: 'Find 404 errors, fix them in bulk and manage your redirects from one place, so your SEO stays protected.',
+    href: '/products/routify',
+  },
+];
 ---
 <Base navCta={{ label: 'Browse apps', href: '#apps' }}>
   <script type="application/ld+json" slot="head" set:html={JSON.stringify(orgSchema)} />
 
-  <header class="home-hero">
-    <div class="wrap home-hero-grid">
-      <div>
-        <p class="home-kicker">Shopify apps by CognitioLab</p>
-        <h1>Your checkout should work the way your store does.</h1>
-        <p class="home-lead">Hide the wrong payment options, charge fairly for cash on delivery, and decide who sees your prices. No code needed.</p>
-        <div class="hero-cta">
-          <a href="#apps" class="btn btn-primary">See the apps</a>
-          <span class="home-rating"><b>★ 5.0</b> across 7 App Store reviews</span>
-        </div>
+  <header class="home-hero" id="home-hero">
+    <div class="wrap">
+      <div class="hero-tabs" role="tablist" aria-label="CognitioLab apps">
+        {heroApps.map((app, i) => (
+          <button type="button" class:list={['hero-tab', { active: i === 0 }]} role="tab" id={`hero-tab-${i}`} aria-controls={`hero-panel-${i}`} aria-selected={i === 0 ? 'true' : 'false'}>
+            <img src={app.icon} alt="" width="24" height="24" />
+            {app.name}
+          </button>
+        ))}
       </div>
-      <div class="co-mock" role="img" aria-label="Example checkout: a prepaid discount on card payments, a renamed payment method, and Cash on Delivery hidden on a high-value order">
-        <div class="co-head"><span>Payment</span><span class="co-total">Order total $640.00</span></div>
-        <div class="co-row on">
-          <span class="co-radio"></span>
-          <div><b>Credit card</b><small>ChargeIt: 5% prepaid discount</small></div>
-          <span class="co-amt">−$32.00</span>
-        </div>
-        <div class="co-row">
-          <span class="co-radio"></span>
-          <div><b>JazzCash</b><small>PayShift: renamed from “Online Payment Options”</small></div>
-        </div>
-        <div class="co-row off">
-          <span class="co-radio"></span>
-          <div><b>Cash on Delivery</b><small>PayShift: hidden on orders over $500</small></div>
-          <span class="co-pill">Hidden</span>
-        </div>
+
+      <div class="hero-panels">
+        {heroApps.map((app, i) => {
+          const Title = i === 0 ? 'h1' : 'h2';
+          return (
+            <div class:list={['hero-panel', { active: i === 0 }]} role="tabpanel" id={`hero-panel-${i}`} aria-labelledby={`hero-tab-${i}`}>
+              <div class="home-hero-grid">
+                <div>
+                  <Title class="home-title">{app.title}</Title>
+                  <p class="home-lead">{app.lead}</p>
+                  <div class="hero-cta">
+                    <a href={app.href} class="btn btn-primary">See {app.name}</a>
+                    <span class="home-rating"><b>★ 5.0</b> across 7 reviews of our apps</span>
+                  </div>
+                </div>
+
+                {i === 0 && (
+                  <div class="co-mock" role="img" aria-label="Example checkout: a renamed payment method, a reordered list, and Cash on Delivery hidden on a high-value order">
+                    <div class="co-head"><span>Payment</span><span class="co-total">Order total $640.00</span></div>
+                    <div class="co-row on">
+                      <span class="co-radio"></span>
+                      <div><b>JazzCash</b><small>Renamed from “Online Payment Options”</small></div>
+                    </div>
+                    <div class="co-row">
+                      <span class="co-radio"></span>
+                      <div><b>Credit card</b><small>Moved up the list</small></div>
+                    </div>
+                    <div class="co-row off">
+                      <span class="co-radio"></span>
+                      <div><b>Cash on Delivery</b><small>Hidden on orders over $500</small></div>
+                      <span class="co-pill">Hidden</span>
+                    </div>
+                  </div>
+                )}
+
+                {i === 1 && (
+                  <div class="co-mock" role="img" aria-label="Example cart: a 5% discount for paying by card and a 3% fee for cash on delivery">
+                    <div class="co-head"><span>How would you like to pay?</span><span class="co-total">Cart $640.00</span></div>
+                    <div class="co-row on">
+                      <span class="co-radio"></span>
+                      <div><b>Credit card</b><small>Prepaid discount, 5%</small></div>
+                      <span class="co-amt">−$32.00</span>
+                    </div>
+                    <div class="co-row">
+                      <span class="co-radio"></span>
+                      <div><b>Cash on Delivery</b><small>COD handling fee, 3%</small></div>
+                      <span class="co-amt fee">+$19.20</span>
+                    </div>
+                    <div class="co-sum"><span>Total with card</span><b>$608.00</b></div>
+                  </div>
+                )}
+
+                {i === 2 && (
+                  <div class="co-mock" role="img" aria-label="Example product: visitors are asked to log in for the price, while approved wholesale customers see it">
+                    <div class="co-head"><span>Classic Leather Bag</span><span class="co-total">Wholesale collection</span></div>
+                    <div class="co-row off-soft">
+                      <div><b>Visitor</b><small>Price and Add to Cart hidden</small></div>
+                      <span class="co-pill">Log in to see price</span>
+                    </div>
+                    <div class="co-row on">
+                      <div><b>Customer tagged “wholesale”</b><small>Price and Add to Cart shown</small></div>
+                      <span class="co-amt">$48.00</span>
+                    </div>
+                    <div class="co-row">
+                      <div><b>Passcode or secret link</b><small>Unlocks access for chosen buyers</small></div>
+                    </div>
+                  </div>
+                )}
+
+                {i === 3 && (
+                  <div class="co-mock" role="img" aria-label="Example 404 log: broken links redirected to the right pages">
+                    <div class="co-head"><span>404 log</span><span class="co-total">Example</span></div>
+                    <div class="co-row">
+                      <div><b>/collections/summer-sale</b><small>301 to /collections/sale</small></div>
+                      <span class="co-pill good">Fixed</span>
+                    </div>
+                    <div class="co-row">
+                      <div><b>/products/blue-shirt-old</b><small>301 to /products/blue-shirt</small></div>
+                      <span class="co-pill good">Fixed</span>
+                    </div>
+                    <div class="co-row">
+                      <div><b>/pages/about-us-2</b><small>No redirect yet</small></div>
+                      <span class="co-pill">404</span>
+                    </div>
+                  </div>
+                )}
+              </div>
+            </div>
+          );
+        })}
       </div>
     </div>
   </header>
+
+  <script is:inline>
+    (function () {
+      const hero = document.getElementById('home-hero');
+      const tabs = Array.from(hero.querySelectorAll('.hero-tab'));
+      const panels = Array.from(hero.querySelectorAll('.hero-panel'));
+      const DELAY = 7000;
+      let current = 0;
+      let timer = null;
+
+      function show(i) {
+        current = i;
+        tabs.forEach(function (tab, n) {
+          tab.classList.toggle('active', n === i);
+          tab.setAttribute('aria-selected', n === i ? 'true' : 'false');
+        });
+        panels.forEach(function (panel, n) {
+          panel.classList.toggle('active', n === i);
+        });
+      }
+      function stop() {
+        clearInterval(timer);
+        timer = null;
+      }
+      function start() {
+        if (timer || hero.dataset.stopped) return;
+        timer = setInterval(function () { show((current + 1) % tabs.length); }, DELAY);
+      }
+
+      tabs.forEach(function (tab, i) {
+        tab.addEventListener('click', function () {
+          hero.dataset.stopped = 'true';
+          stop();
+          show(i);
+        });
+      });
+      hero.addEventListener('mouseenter', stop);
+      hero.addEventListener('mouseleave', start);
+      hero.addEventListener('focusin', stop);
+
+      if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) start();
+      else hero.dataset.stopped = 'true';
+    })();
+  </script>
 
   <div class="proof">
     <div class="wrap proof-inner">
